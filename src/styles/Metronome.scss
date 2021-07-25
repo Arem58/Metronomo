@@ -12,6 +12,7 @@ $color3: #ddd;
 body{
     font-family: 'Raleway', sans-serif;
     color: $colo1;
+    user-select: none;
 }
 
 .Container{

@@ -1,8 +1,6 @@
 import React, { useState } from 'react'
 import '../styles/Metronome.css'
-import { play, play2 } from '../scripts/metronome'
-import song from '../audio/click1.mp3'
-import song2 from '../audio/click2.mp3'
+import {play1, play2} from '../scripts/metronome'
 
 const App = () => {
   const [BPM, setBPM] = useState(140)
@@ -29,14 +27,14 @@ const App = () => {
       }
       setBPM(BPM - 1)
       setTempoText()
-      play()
+      play2()
     } if (event.currentTarget.dataset.id === 'BPM-increase') {
       if (BPM === 280) {
         return
       }
       setBPM(BPM + 1)
       setTempoText()
-      play2()
+      play1()
     } if (event.currentTarget.dataset.id === 'subtract-beats') {
       if (Metrica === 2) {
         return

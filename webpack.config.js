@@ -1,4 +1,5 @@
 const path = require('path')
+const SRC = path.resolve(__dirname, 'node_modules');
 const HTMLWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
@@ -31,6 +32,13 @@ module.exports = {
           // Compiles Sass to CSS
           'sass-loader',
         ],
+      },
+      {
+        test: /\.mp3$/,
+        loader: 'file-loader',
+        options: {
+            name: '[path][name].[ext]'
+        }
       },
     ],
   },
