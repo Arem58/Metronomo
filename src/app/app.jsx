@@ -1,13 +1,81 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import '../styles/Metronome.css'
 import {play1, play2} from '../scripts/metronome'
+//import Timer from '../scripts/timer'
 
 const App = () => {
   const [BPM, setBPM] = useState(140)
   const [Metrica, setMetrica] = useState(4)
   const [Tempo, setTempo] = useState('Nice and Steady')
   const [Start, setStart] = useState('START')
-  const [clicked, setClicked] = useState(0)
+  const [clicked, setClicked] = useState(false)
+  let count = 0
+  let metrica = Metrica
+
+  function playsound (){
+    const temp = metrica
+    if (count === temp){
+      count = 0
+    }
+    if (count === 0){
+      play1()
+    }else{
+      play2()
+    }
+    count += 1
+    //console.log(count)
+  }
+
+  function Timer(callback, timeInterval, options) {
+    this.timeInterval = timeInterval;
+
+    useEffect(() => {
+      if(clicked){
+      // Set the expected time. The moment in time we start the timer plus whatever the time interval is. 
+        this.expected = Date.now() + this.timeInterval;
+        // Start the timeout and save the id in a property, so we can cancel it later
+        this.theTimeout = null;
+        
+        if (options.immediate) {
+          callback();
+        } 
+        
+        console.log('hola')
+
+        this.timeout = setTimeout(this.round, this.timeInterval);
+        //console.log('Timer Started');
+
+        return () => {
+          clearTimeout(this.timeout);
+          //console.log('Timer Stopped');
+        }
+      }
+    }, [clicked])
+    // Round method that takes care of running the callback and adjusting the time
+    this.round = () => {
+      console.log(metrica)
+
+      //console.log('timeout', this.timeout);
+      // The drift will be the current moment in time for this round minus the expected time..
+      let drift = Date.now() - this.expected;
+      // Run error callback if drift is greater than time interval, and if the callback is provided
+      if (drift > this.timeInterval) {
+        // If error callback is provided
+        if (options.errorCallback) {
+          options.errorCallback();
+        }
+      }
+      callback();
+      // Increment expected time by time interval for every round after running the callback function.
+      this.expected += this.timeInterval;
+      //console.log('Drift:', drift);
+      //console.log('Next round time interval:', this.timeInterval - drift);
+      // Run timeout again and set the timeInterval of the next iteration to the original time interval minus the drift.
+      this.timeout = setTimeout(this.round, this.timeInterval - drift);
+    }
+  }
+
+  const metro = new Timer(() => playsound(), 60000/BPM, {immediate: true})
 
   const setTempoText = () => {
     if (BPM <= 40) { setTempo('Super Slow') }
@@ -27,31 +95,35 @@ const App = () => {
       }
       setBPM(BPM - 1)
       setTempoText()
-      play2()
+      play1()
     } if (event.currentTarget.dataset.id === 'BPM-increase') {
       if (BPM === 280) {
         return
       }
       setBPM(BPM + 1)
       setTempoText()
-      play1()
     } if (event.currentTarget.dataset.id === 'subtract-beats') {
       if (Metrica === 2) {
         return
       }
       setMetrica(Metrica - 1)
+      metrica -= 1
     } if (event.currentTarget.dataset.id === 'add-beats') {
       if (Metrica === 7) {
         return
       }
       setMetrica(Metrica + 1)
+      metrica += 1
+      console.log(metrica)
     } if (event.currentTarget.dataset.id === 'start-stop') {
-      if (clicked === 0) {
+      if (clicked === false) {
         setStart('STOP')
-        setClicked(1)
-      } else if (clicked === 1) {
+        setClicked(true)
+        console.log(count)
+      } else if (clicked === true) {
         setStart('START')
-        setClicked(0)
+        setClicked(false)
+        console.log(count)
       }
     }
   }
