@@ -1,0 +1,179 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,700;1,400&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+}
+
+$colo1: #525252;
+$color2: #fa545c;
+$color2Ligther: #ff656c;
+$color3: #ddd;
+
+body{
+    font-family: 'Raleway', sans-serif;
+    color: $colo1;
+}
+
+.Container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.Metronome{
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: 250px;
+    justify-content: space-between;
+}
+
+.bpm-display{
+    width: 100%;
+    text-align: center;
+    color: $color2;
+    font-weight: bold;
+}
+
+.tempo{
+    font-size: 4em;
+}
+
+.tempo-text{
+    font-size: .8em;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.tempo-settings{
+    display: flex;
+    justify-content: space-between;
+}
+
+.adjust-tempo-btn{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid $color3;
+    cursor: pointer;
+    background: none;
+}
+
+.adjust-tempo-btn:hover{
+    background: $color2;
+    color: white
+}
+
+.styleSpan{
+    text-align: center;
+    font-size: 40px;
+    height: 20px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.decrease-tempo{
+    line-height: 14px;
+    padding-left: 1px;
+}
+
+.increase-tempo{
+    line-height: 22px;
+    padding-left: 2px;
+}
+
+input[type=range]{
+    -webkit-appearance: none;
+    background: transparent;
+    width: 70%;
+}
+
+input[type=range]::-webkit-slider-thumb{
+    -webkit-appearance: none;
+}
+
+input[type=range]::-focus{
+    outline: none;
+}
+
+input[type=range]::-webkit-slider-thumb{
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: $color2;
+    cursor: pointer;
+    margin-top: -8px;
+}
+
+input[type=range]::-moz-range-thumb{
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: $color2;
+    cursor: pointer;
+    border: none;
+}
+
+input[type=range]::-webkit-slider-runnable-track{
+    width: 100%;
+    height: 1px;
+    background: $color3;
+}
+
+input[type=range]::-moz-range-track{
+    width: 100%;
+    height: 1px;
+    background: $color3;
+}
+
+.start-stop{
+    width: 50px;
+    height: 50px;
+    font-size: 0.7em;
+    text-align: center;
+    background-color: $color2;
+    border-radius: 50%;
+    color: white;
+    margin: 0 auto;
+    cursor: pointer;
+    border-color: $color2;
+    border: 1px solid transparent;
+}
+
+.start-stop:hover{
+    background-color: $color2Ligther;
+}
+
+.measures{
+    display: flex;
+    justify-content: center;
+}
+
+.stepper{
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    border: 1px solid $color3;
+    text-align: center;
+    margin: 0 5px;
+    cursor: pointer;
+    background: none;
+}
+
+.stepper:hover{
+    background: $color2Ligther;
+    color: white;
+}
+
+.add-beats{
+    line-height: 20px;
+}
+
+.beats-per-measure-text{
+    text-align: center;
+    font-size: 0.5em;
+    text-transform: uppercase;
+}
