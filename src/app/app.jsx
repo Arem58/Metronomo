@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import '../styles/Metronome.css'
 import { play, play2 } from '../scripts/metronome'
-import '../audio/click1.mp3'
-import '../audio/click2.mp3'
+import song from '../audio/click1.mp3'
+import song2 from '../audio/click2.mp3'
 
 const App = () => {
   const [BPM, setBPM] = useState(140)
