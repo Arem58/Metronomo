@@ -9,21 +9,19 @@ const App = () => {
   const [Tempo, setTempo] = useState('Nice and Steady')
   const [Start, setStart] = useState('START')
   const [clicked, setClicked] = useState(false)
-  let count = 0
-  let metrica = Metrica
+  const [count, setCount] = useState(0)
 
   function playsound (){
-    const temp = metrica
-    if (count === temp){
-      count = 0
+    console.log(typeof count, typeof Metrica, count === Metrica)
+    if (count === Metrica){
+      setCount(0)
     }
     if (count === 0){
       play1()
     }else{
       play2()
     }
-    count += 1
-    //console.log(count)
+    setCount( count + 1 )
   }
 
   function Timer(callback, timeInterval, options) {
@@ -39,8 +37,6 @@ const App = () => {
         if (options.immediate) {
           callback();
         } 
-        
-        console.log('hola')
 
         this.timeout = setTimeout(this.round, this.timeInterval);
         //console.log('Timer Started');
@@ -53,8 +49,6 @@ const App = () => {
     }, [clicked])
     // Round method that takes care of running the callback and adjusting the time
     this.round = () => {
-      console.log(metrica)
-
       //console.log('timeout', this.timeout);
       // The drift will be the current moment in time for this round minus the expected time..
       let drift = Date.now() - this.expected;
@@ -78,52 +72,43 @@ const App = () => {
   const metro = new Timer(() => playsound(), 60000/BPM, {immediate: true})
 
   const setTempoText = () => {
-    if (BPM <= 40) { setTempo('Super Slow') }
-    if (BPM > 40 && BPM < 80) { setTempo('Slow') }
-    if (BPM > 80 && BPM < 120) { setTempo('Getting there') }
-    if (BPM > 120 && BPM < 180) { setTempo('Nice and Steady') }
-    if (BPM > 180 && BPM < 220) { setTempo("Rock n' Roll") }
-    if (BPM > 220 && BPM < 240) { setTempo('Funky Stuff') }
-    if (BPM > 240 && BPM < 260) { setTempo('Relax Dude') }
-    if (BPM > 260 && BPM <= 280) { setTempo('Eddie Van Halen') }
+    if (BPM <= 40) setTempo('Super Slow') 
+    else if (BPM < 80) setTempo('Slow') 
+    else if (BPM < 120) setTempo('Getting there') 
+    else if (BPM < 180) setTempo('Nice and Steady') 
+    else if (BPM < 220) setTempo("Rock n' Roll") 
+    else if (BPM < 240) setTempo('Funky Stuff') 
+    else if (BPM < 260) setTempo('Relax Dude')
+    else if (BPM <= 280) setTempo('Eddie Van Halen') 
   }
 
   const handleClick = (event) => {
-    if (event.currentTarget.dataset.id === 'BPM-decrease') {
-      if (BPM === 20) {
-        return
-      }
+    const {id} = event.currentTarget.dataset
+    if (id === 'BPM-decrease') {
+      if (BPM === 20) return
       setBPM(BPM - 1)
       setTempoText()
-      play1()
-    } if (event.currentTarget.dataset.id === 'BPM-increase') {
-      if (BPM === 280) {
-        return
-      }
+    } else if (id === 'BPM-increase') {
+      if (BPM === 280) return
       setBPM(BPM + 1)
       setTempoText()
-    } if (event.currentTarget.dataset.id === 'subtract-beats') {
+    } else if (id === 'subtract-beats') {
       if (Metrica === 2) {
         return
       }
       setMetrica(Metrica - 1)
-      metrica -= 1
-    } if (event.currentTarget.dataset.id === 'add-beats') {
+    } else if (id === 'add-beats') {
       if (Metrica === 7) {
         return
       }
       setMetrica(Metrica + 1)
-      metrica += 1
-      console.log(metrica)
-    } if (event.currentTarget.dataset.id === 'start-stop') {
+    } else if (id === 'start-stop') {
       if (clicked === false) {
         setStart('STOP')
         setClicked(true)
-        console.log(count)
       } else if (clicked === true) {
         setStart('START')
         setClicked(false)
-        console.log(count)
       }
     }
   }
@@ -143,7 +128,7 @@ const App = () => {
         </div>
         <div className="tempo-text">{Tempo}</div>
         <div className="tempo-settings">
-          <button type="button" data-id="BPM-decrease" className="adjust-tempo-btn decrease-tempo" onClick={handleClick}><span className="styleSpan">-</span></button>
+          <button type="button" data-id="BPM-decrease" className="adjust-tempo-btn decrease-tempo" onClick={( event ) => handleClick(event)}><span className="styleSpan">-</span></button>
           <input type="range" min="20" max="280" step="1" className="slider" onChange={handleChange} value={BPM} />
           <button type="button" data-id="BPM-increase" className="adjust-tempo-btn increase-tempo" onClick={handleClick}><span className="styleSpan">+</span></button>
         </div>
