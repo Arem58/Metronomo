@@ -7,6 +7,7 @@ const App = () => {
   const [BPM, setBPM] = useState(140)
   const bpmRef = useRef(BPM)
   bpmRef.current = BPM
+  const currentTimer = useRef(0)
   const [Metrica, setMetrica] = useState(4)
   const metricaRef = useRef(Metrica)
   metricaRef.current = Metrica
@@ -24,16 +25,16 @@ const App = () => {
     }else{
       play2()
     }
-    countRef.current += 1
+    countRef.current ++ 
   }
 
   function Timer(callback, timeInterval, options) {
-    this.timeInterval = timeInterval;
+    currentTimer.current = timeInterval
 
     useEffect(() => {
       if(clicked){
       // Set the expected time. The moment in time we start the timer plus whatever the time interval is. 
-        this.expected = Date.now() + this.timeInterval;
+        this.expected = Date.now() + currentTimer.current
         // Start the timeout and save the id in a property, so we can cancel it later
         this.theTimeout = null;
         
@@ -41,11 +42,11 @@ const App = () => {
           callback();
         } 
 
-        this.timeout = setTimeout(this.round, this.timeInterval);
+        this.timeout = setTimeout(this.round, currentTimer.current)
         //console.log('Timer Started');
 
         return () => {
-          clearTimeout(this.timeout);
+          clearTimeout(this.timeout)
           countRef.current = 0
           //console.log('Timer Stopped');
         }
@@ -53,27 +54,28 @@ const App = () => {
     }, [clicked])
     // Round method that takes care of running the callback and adjusting the time
     this.round = () => {
+      console.log(currentTimer.current)
       //console.log('timeout', this.timeout);
       // The drift will be the current moment in time for this round minus the expected time..
-      let drift = Date.now() - this.expected;
+      let drift = Date.now() - this.expected
       // Run error callback if drift is greater than time interval, and if the callback is provided
       if (drift > this.timeInterval) {
         // If error callback is provided
         if (options.errorCallback) {
-          options.errorCallback();
+          options.errorCallback()
         }
       }
       callback();
       // Increment expected time by time interval for every round after running the callback function.
-      this.expected += this.timeInterval;
+      this.expected += currentTimer.current
       //console.log('Drift:', drift);
       //console.log('Next round time interval:', this.timeInterval - drift);
       // Run timeout again and set the timeInterval of the next iteration to the original time interval minus the drift.
-      this.timeout = setTimeout(this.round, this.timeInterval - drift);
+      this.timeout = setTimeout(this.round, currentTimer.current - drift)
     }
   }
 
-  const metro = new Timer(() => playsound(), 60000/bpmRef.current, {immediate: true})
+  const metro = new Timer(playsound, 60000/bpmRef.current, {immediate: true})
 
   const setTempoText = () => {
     if (bpmRef.current <= 40) setTempo('Super Slow') 
@@ -139,6 +141,7 @@ const App = () => {
           <button type="button" data-id="add-beats" className="add-beats stepper" onClick={handleClick}>+</button>
         </div>
         <div className="beats-per-measure-text">Metrica</div>
+        <input type="checkbox" value="" />
       </div>
     </div>
   )
