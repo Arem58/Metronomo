@@ -1,27 +1,30 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import '../styles/Metronome.css'
 import {play1, play2} from '../scripts/metronome'
 //import Timer from '../scripts/timer'
 
 const App = () => {
   const [BPM, setBPM] = useState(140)
+  const bpmRef = useRef(BPM)
+  bpmRef.current = BPM
   const [Metrica, setMetrica] = useState(4)
+  const metricaRef = useRef(Metrica)
+  metricaRef.current = Metrica
   const [Tempo, setTempo] = useState('Nice and Steady')
   const [Start, setStart] = useState('START')
   const [clicked, setClicked] = useState(false)
-  const [count, setCount] = useState(0)
+  const countRef = useRef(0)
 
   function playsound (){
-    console.log(typeof count, typeof Metrica, count === Metrica)
-    if (count === Metrica){
-      setCount(0)
+    if (countRef.current === metricaRef.current){
+      countRef.current = 0
     }
-    if (count === 0){
+    if (countRef.current === 0){
       play1()
     }else{
       play2()
     }
-    setCount( count + 1 )
+    countRef.current += 1
   }
 
   function Timer(callback, timeInterval, options) {
@@ -43,6 +46,7 @@ const App = () => {
 
         return () => {
           clearTimeout(this.timeout);
+          countRef.current = 0
           //console.log('Timer Stopped');
         }
       }
@@ -69,38 +73,34 @@ const App = () => {
     }
   }
 
-  const metro = new Timer(() => playsound(), 60000/BPM, {immediate: true})
+  const metro = new Timer(() => playsound(), 60000/bpmRef.current, {immediate: true})
 
   const setTempoText = () => {
-    if (BPM <= 40) setTempo('Super Slow') 
-    else if (BPM < 80) setTempo('Slow') 
-    else if (BPM < 120) setTempo('Getting there') 
-    else if (BPM < 180) setTempo('Nice and Steady') 
-    else if (BPM < 220) setTempo("Rock n' Roll") 
-    else if (BPM < 240) setTempo('Funky Stuff') 
-    else if (BPM < 260) setTempo('Relax Dude')
-    else if (BPM <= 280) setTempo('Eddie Van Halen') 
+    if (bpmRef.current <= 40) setTempo('Super Slow') 
+    else if (bpmRef.current < 80) setTempo('Slow') 
+    else if (bpmRef.current < 120) setTempo('Getting there') 
+    else if (bpmRef.current < 180) setTempo('Nice and Steady') 
+    else if (bpmRef.current < 220) setTempo("Rock n' Roll") 
+    else if (bpmRef.current < 240) setTempo('Funky Stuff') 
+    else if (bpmRef.current < 260) setTempo('Relax Dude')
+    else if (bpmRef.current <= 280) setTempo('Eddie Van Halen') 
   }
 
   const handleClick = (event) => {
     const {id} = event.currentTarget.dataset
     if (id === 'BPM-decrease') {
-      if (BPM === 20) return
+      if (bpmRef.current === 20) return
       setBPM(BPM - 1)
       setTempoText()
     } else if (id === 'BPM-increase') {
-      if (BPM === 280) return
+      if (bpmRef.current === 280) return
       setBPM(BPM + 1)
       setTempoText()
     } else if (id === 'subtract-beats') {
-      if (Metrica === 2) {
-        return
-      }
+      if (metricaRef.current === 2) return
       setMetrica(Metrica - 1)
     } else if (id === 'add-beats') {
-      if (Metrica === 7) {
-        return
-      }
+      if (metricaRef.current === 7) return
       setMetrica(Metrica + 1)
     } else if (id === 'start-stop') {
       if (clicked === false) {
