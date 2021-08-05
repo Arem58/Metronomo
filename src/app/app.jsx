@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react'
 import '../styles/Metronome.css'
-import {play1, play2} from '../scripts/metronome'
+import {play1, play2, play3} from '../scripts/metronome'
 //import Timer from '../scripts/timer'
 
 const App = () => {
@@ -15,6 +15,17 @@ const App = () => {
   const [Start, setStart] = useState('START')
   const [clicked, setClicked] = useState(false)
   const countRef = useRef(0)
+  const [Bit, setBit] = useState(false)
+  const bitRef = useRef(Bit)
+  bitRef.current = Bit
+
+  function Sound3(){
+    const sound = setTimeout(() => {
+      play3()
+      console.log(`sonido2 ${currentTimer.current*0.495}`)
+      console.log(`sonido2 ${currentTimer.current*0.5}`)
+    }, currentTimer.current*0.495)
+  }
 
   function playsound (){
     if (countRef.current === metricaRef.current){
@@ -22,8 +33,16 @@ const App = () => {
     }
     if (countRef.current === 0){
       play1()
+      console.log(`sonido ${currentTimer.current}`)
+      if (bitRef.current){
+        const newSound = new Sound3()
+      }  
     }else{
       play2()
+      console.log(`sonido ${currentTimer.current}`)
+      if (bitRef.current) {
+        const newSound = new Sound3()
+      } 
     }
     countRef.current ++ 
   }
@@ -54,7 +73,6 @@ const App = () => {
     }, [clicked])
     // Round method that takes care of running the callback and adjusting the time
     this.round = () => {
-      console.log(currentTimer.current)
       //console.log('timeout', this.timeout);
       // The drift will be the current moment in time for this round minus the expected time..
       let drift = Date.now() - this.expected
@@ -101,9 +119,11 @@ const App = () => {
     } else if (id === 'subtract-beats') {
       if (metricaRef.current === 2) return
       setMetrica(Metrica - 1)
+      countRef.current = 0
     } else if (id === 'add-beats') {
       if (metricaRef.current === 7) return
       setMetrica(Metrica + 1)
+      countRef.current = 0
     } else if (id === 'start-stop') {
       if (clicked === false) {
         setStart('STOP')
@@ -114,7 +134,6 @@ const App = () => {
       }
     }
   }
-
   const handleChange = (event) => {
     const newValue = parseInt(event.currentTarget.value, 10)
     setBPM(newValue)
@@ -141,7 +160,7 @@ const App = () => {
           <button type="button" data-id="add-beats" className="add-beats stepper" onClick={handleClick}>+</button>
         </div>
         <div className="beats-per-measure-text">Metrica</div>
-        <input type="checkbox" value="" />
+        <input type="checkbox" onChange={(e) => setBit(e.target.checked)} />
       </div>
     </div>
   )
