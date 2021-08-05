@@ -4,15 +4,17 @@
     margin: 0;
 }
 
-$colo1: #525252;
-$color2: #fa545c;
-$color2Ligther: #ff656c;
+$colo1: #ddd;
+$color2: #08A66C;
+$color2Ligther: #0ABF7D;
 $color3: #ddd;
+$color4: #012603;
 
 body{
     font-family: 'Raleway', sans-serif;
     color: $colo1;
     user-select: none;
+    background-color: $color4;
 }
 
 .Container{
@@ -76,12 +78,14 @@ body{
 
 .decrease-tempo{
     line-height: 14px;
+    color: $colo1;
     padding-left: 1px;
 }
 
 .increase-tempo{
     line-height: 22px;
     padding-left: 2px;
+    color: $colo1;
 }
 
 input[type=range]{
@@ -161,6 +165,7 @@ input[type=range]::-moz-range-track{
     text-align: center;
     margin: 0 5px;
     cursor: pointer;
+    color: $colo1;
     background: none;
 }
 
@@ -178,3 +183,53 @@ input[type=range]::-moz-range-track{
     font-size: 0.5em;
     text-transform: uppercase;
 }
+
+.toggle {
+    --width: 35px;
+    --height: calc(var(--width) / 2);
+    --border-radius: calc(var(--height) / 2);
+  
+    display: inline-block;
+    cursor: pointer;
+    position: absolute;
+    right: 50px;
+    bottom: 1px;
+  }
+  
+  .toggle__input {
+    display: none;
+  }
+  
+  .toggle__fill {
+    position: relative;
+    width: var(--width);
+    height: var(--height);
+    border-radius: var(--border-radius);
+    background: #dddddd;
+    transition: background 0.2s;
+  }
+  
+  .toggle__input:checked ~ .toggle__fill {
+    background: $color2Ligther;
+  }
+  
+  .toggle__fill::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: var(--height);
+    width: var(--height);
+    background: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+    border-radius: var(--border-radius);
+    transition: transform 0.2s;
+  }
+  
+  .toggle__input:checked ~ .toggle__fill::after {
+    transform: translateX(var(--height));
+  }
+
+  .measures{
+      position: relative;
+  }

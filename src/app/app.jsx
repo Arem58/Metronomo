@@ -154,9 +154,12 @@ const App = () => {
           <button type="button" data-id="subtract-beats" className="subtract-beats stepper" onClick={handleClick}>-</button>
           <div className="measure-count">{Metrica}</div>
           <button type="button" data-id="add-beats" className="add-beats stepper" onClick={handleClick}>+</button>
+          <label className="toggle" for="myToggle">
+            <input type="checkbox" className="toggle__input" onChange={(e) => setBit(e.target.checked)} id="myToggle"/>
+            <div className="toggle__fill"></div>
+          </label>
         </div>
         <div className="beats-per-measure-text">Metrica</div>
-        <input type="checkbox" onChange={(e) => setBit(e.target.checked)} />
       </div>
     </div>
   )

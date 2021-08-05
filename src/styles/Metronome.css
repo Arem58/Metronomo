@@ -6,11 +6,12 @@
 
 body {
   font-family: "Raleway", sans-serif;
-  color: #525252;
+  color: #ddd;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
+  background-color: #012603;
 }
 
 .Container {
@@ -31,7 +32,7 @@ body {
 .bpm-display {
   width: 100%;
   text-align: center;
-  color: #fa545c;
+  color: #08A66C;
   font-weight: bold;
 }
 
@@ -60,7 +61,7 @@ body {
 }
 
 .adjust-tempo-btn:hover {
-  background: #fa545c;
+  background: #08A66C;
   color: white;
 }
 
@@ -74,12 +75,14 @@ body {
 
 .decrease-tempo {
   line-height: 14px;
+  color: #ddd;
   padding-left: 1px;
 }
 
 .increase-tempo {
   line-height: 22px;
   padding-left: 2px;
+  color: #ddd;
 }
 
 input[type=range] {
@@ -101,7 +104,7 @@ input[type=range]::-webkit-slider-thumb {
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background: #fa545c;
+  background: #08A66C;
   cursor: pointer;
   margin-top: -8px;
 }
@@ -111,7 +114,7 @@ input[type=range]::-moz-range-thumb {
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background: #fa545c;
+  background: #08A66C;
   cursor: pointer;
   border: none;
 }
@@ -133,17 +136,17 @@ input[type=range]::-moz-range-track {
   height: 50px;
   font-size: 0.7em;
   text-align: center;
-  background-color: #fa545c;
+  background-color: #08A66C;
   border-radius: 50%;
   color: white;
   margin: 0 auto;
   cursor: pointer;
-  border-color: #fa545c;
+  border-color: #08A66C;
   border: 1px solid transparent;
 }
 
 .start-stop:hover {
-  background-color: #ff656c;
+  background-color: #0ABF7D;
 }
 
 .measures {
@@ -159,11 +162,12 @@ input[type=range]::-moz-range-track {
   text-align: center;
   margin: 0 5px;
   cursor: pointer;
+  color: #ddd;
   background: none;
 }
 
 .stepper:hover {
-  background: #ff656c;
+  background: #0ABF7D;
   color: white;
 }
 
@@ -175,4 +179,53 @@ input[type=range]::-moz-range-track {
   text-align: center;
   font-size: 0.5em;
   text-transform: uppercase;
+}
+
+.toggle {
+  --width: 35px;
+  --height: calc(var(--width) / 2);
+  --border-radius: calc(var(--height) / 2);
+  display: inline-block;
+  cursor: pointer;
+  position: absolute;
+  right: 50px;
+  bottom: 1px;
+}
+
+.toggle__input {
+  display: none;
+}
+
+.toggle__fill {
+  position: relative;
+  width: var(--width);
+  height: var(--height);
+  border-radius: var(--border-radius);
+  background: #dddddd;
+  transition: background 0.2s;
+}
+
+.toggle__input:checked ~ .toggle__fill {
+  background: #0ABF7D;
+}
+
+.toggle__fill::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: var(--height);
+  width: var(--height);
+  background: #ffffff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  border-radius: var(--border-radius);
+  transition: transform 0.2s;
+}
+
+.toggle__input:checked ~ .toggle__fill::after {
+  transform: translateX(var(--height));
+}
+
+.measures {
+  position: relative;
 }/*# sourceMappingURL=Metronome.css.map */
