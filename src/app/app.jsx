@@ -22,8 +22,6 @@ const App = () => {
   function Sound3(){
     const sound = setTimeout(() => {
       play3()
-      console.log(`sonido2 ${currentTimer.current*0.495}`)
-      console.log(`sonido2 ${currentTimer.current*0.5}`)
     }, currentTimer.current*0.495)
   }
 
@@ -33,13 +31,11 @@ const App = () => {
     }
     if (countRef.current === 0){
       play1()
-      console.log(`sonido ${currentTimer.current}`)
       if (bitRef.current){
         const newSound = new Sound3()
       }  
     }else{
       play2()
-      console.log(`sonido ${currentTimer.current}`)
       if (bitRef.current) {
         const newSound = new Sound3()
       } 
