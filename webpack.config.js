@@ -1,5 +1,6 @@
 const path = require('path')
-const SRC = path.resolve(__dirname, 'node_modules');
+
+// const SRC = path.resolve(__dirname, 'node_modules')
 const HTMLWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
@@ -37,8 +38,8 @@ module.exports = {
         test: /\.mp3$/,
         loader: 'file-loader',
         options: {
-            name: '[path][name].[ext]'
-        }
+          name: '[path][name].[ext]',
+        },
       },
     ],
   },

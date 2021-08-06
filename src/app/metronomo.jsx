@@ -1,8 +1,12 @@
+/* eslint-disable consistent-return */
+/* eslint-disable max-len */
+/* eslint-disable react/no-this-in-sfc */
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect, useRef } from 'react'
 import '../styles/Metronome.css'
-import {play1, play2, play3} from '../scripts/metronome'
 import { Link } from 'react-router-dom'
-//import Timer from '../scripts/timer'
+import { play1, play2, play3 } from '../scripts/metronome'
+// import Timer from '../scripts/timer'
 
 const Metronomo = () => {
   const [BPM, setBPM] = useState(140)
@@ -19,61 +23,61 @@ const Metronomo = () => {
   const [Bit, setBit] = useState(false)
   const bitRef = useRef(Bit)
   bitRef.current = Bit
-  const buttonText = ">"
+  const buttonText = '>'
 
-  function Sound3(){
+  function Sound3() {
     const sound = setTimeout(() => {
       play3()
-    }, currentTimer.current*0.495)
+    }, currentTimer.current * 0.495)
   }
 
-  function playsound (){
-    if (countRef.current === metricaRef.current){
+  function playsound() {
+    if (countRef.current === metricaRef.current) {
       countRef.current = 0
     }
-    if (countRef.current === 0){
+    if (countRef.current === 0) {
       play1()
-      if (bitRef.current){
+      if (bitRef.current) {
         const newSound = new Sound3()
-      }  
-    }else{
+      }
+    } else {
       play2()
       if (bitRef.current) {
         const newSound = new Sound3()
-      } 
+      }
     }
-    countRef.current ++ 
+    countRef.current += 1
   }
 
   function Timer(callback, timeInterval, options) {
     currentTimer.current = timeInterval
 
     useEffect(() => {
-      if(clicked){
-      // Set the expected time. The moment in time we start the timer plus whatever the time interval is. 
+      if (clicked) {
+      // Set the expected time. The moment in time we start the timer plus whatever the time interval is.
         this.expected = Date.now() + currentTimer.current
         // Start the timeout and save the id in a property, so we can cancel it later
-        this.theTimeout = null;
-        
+        this.theTimeout = null
+
         if (options.immediate) {
-          callback();
-        } 
+          callback()
+        }
 
         this.timeout = setTimeout(this.round, currentTimer.current)
-        //console.log('Timer Started');
+        // console.log('Timer Started');
 
         return () => {
           clearTimeout(this.timeout)
           countRef.current = 0
-          //console.log('Timer Stopped');
+          // console.log('Timer Stopped');
         }
       }
     }, [clicked])
     // Round method that takes care of running the callback and adjusting the time
     this.round = () => {
-      //console.log('timeout', this.timeout);
+      // console.log('timeout', this.timeout);
       // The drift will be the current moment in time for this round minus the expected time..
-      let drift = Date.now() - this.expected
+      const drift = Date.now() - this.expected
       // Run error callback if drift is greater than time interval, and if the callback is provided
       if (drift > this.timeInterval) {
         // If error callback is provided
@@ -81,31 +85,31 @@ const Metronomo = () => {
           options.errorCallback()
         }
       }
-      callback();
+      callback()
       // Increment expected time by time interval for every round after running the callback function.
       this.expected += currentTimer.current
-      //console.log('Drift:', drift);
-      //console.log('Next round time interval:', this.timeInterval - drift);
+      // console.log('Drift:', drift);
+      // console.log('Next round time interval:', this.timeInterval - drift);
       // Run timeout again and set the timeInterval of the next iteration to the original time interval minus the drift.
       this.timeout = setTimeout(this.round, currentTimer.current - drift)
     }
   }
 
-  const metro = new Timer(playsound, 60000/bpmRef.current, {immediate: true})
+  const metro = new Timer(playsound, 60000 / bpmRef.current, { immediate: true })
 
   const setTempoText = () => {
-    if (bpmRef.current <= 40) setTempo('Super Slow') 
-    else if (bpmRef.current < 80) setTempo('Slow') 
-    else if (bpmRef.current < 120) setTempo('Getting there') 
-    else if (bpmRef.current < 180) setTempo('Nice and Steady') 
-    else if (bpmRef.current < 220) setTempo("Rock n' Roll") 
-    else if (bpmRef.current < 240) setTempo('Funky Stuff') 
+    if (bpmRef.current <= 40) setTempo('Super Slow')
+    else if (bpmRef.current < 80) setTempo('Slow')
+    else if (bpmRef.current < 120) setTempo('Getting there')
+    else if (bpmRef.current < 180) setTempo('Nice and Steady')
+    else if (bpmRef.current < 220) setTempo("Rock n' Roll")
+    else if (bpmRef.current < 240) setTempo('Funky Stuff')
     else if (bpmRef.current < 260) setTempo('Relax Dude')
-    else if (bpmRef.current <= 280) setTempo('Eddie Van Halen') 
+    else if (bpmRef.current <= 280) setTempo('Eddie Van Halen')
   }
 
   const handleClick = (event) => {
-    const {id} = event.currentTarget.dataset
+    const { id } = event.currentTarget.dataset
     if (id === 'BPM-decrease') {
       if (bpmRef.current === 20) return
       setBPM(BPM - 1)
@@ -147,7 +151,7 @@ const Metronomo = () => {
         </div>
         <div className="tempo-text">{Tempo}</div>
         <div className="tempo-settings">
-          <button type="button" data-id="BPM-decrease" className="adjust-tempo-btn decrease-tempo" onClick={( event ) => handleClick(event)}><span className="styleSpan">-</span></button>
+          <button type="button" data-id="BPM-decrease" className="adjust-tempo-btn decrease-tempo" onClick={(event) => handleClick(event)}><span className="styleSpan">-</span></button>
           <input type="range" min="20" max="280" step="1" className="slider" onChange={handleChange} value={BPM} />
           <button type="button" data-id="BPM-increase" className="adjust-tempo-btn increase-tempo" onClick={handleClick}><span className="styleSpan">+</span></button>
         </div>
@@ -156,14 +160,19 @@ const Metronomo = () => {
           <button type="button" data-id="subtract-beats" className="subtract-beats stepper" onClick={handleClick}>-</button>
           <div className="measure-count">{Metrica}</div>
           <button type="button" data-id="add-beats" className="add-beats stepper" onClick={handleClick}>+</button>
-          <label className="toggle" for="myToggle">
-            <input type="checkbox" className="toggle__input" onChange={(e) => setBit(e.target.checked)} id="myToggle"/>
-            <div className="toggle__fill"></div>
+          <label className="toggle" htmlFor="myToggle">
+            <input type="checkbox" className="toggle__input" onChange={(e) => setBit(e.target.checked)} id="myToggle" />
+            <div className="toggle__fill" />
           </label>
         </div>
         <div className="beats-per-measure-text">Metrica</div>
       </div>
-      <button className="btn-change-path-mt"><Link to="/escalas" className="decorationA"> <span className="centerText">{buttonText}</span></Link></button>
+      <button className="btn-change-path-mt" type="button">
+        <Link to="/escalas" className="decorationA">
+          {' '}
+          <span className="centerText">{buttonText}</span>
+        </Link>
+      </button>
     </div>
   )
 }
