@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import Metronomo from './metronomo'
 import Escalas from './escalas'
-import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
+import {HashRouter as Router, Switch, Route} from 'react-router-dom'
 
 const App = () => {
   return (
