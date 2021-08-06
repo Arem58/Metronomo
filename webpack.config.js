@@ -21,7 +21,7 @@ module.exports = {
     rules: [
       {
         test: /\.(jsx?)$/,
-        use: ['babel-loader', 'eslint-loader'],
+        use: ['babel-loader'],
       },
       {
         test: /\.s?css$/i,
