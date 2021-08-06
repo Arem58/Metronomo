@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import App from './app/escalas2'
+import App from './app/escalas'
 
 const root = document.getElementById('root')
 

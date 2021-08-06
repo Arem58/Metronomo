@@ -228,4 +228,22 @@ input[type=range]::-moz-range-track {
 
 .measures {
   position: relative;
+}
+
+.btn-change-path {
+  position: absolute;
+  right: 0;
+  width: 50px;
+  height: 70px;
+  background: #ddd;
+  font-size: 30px;
+  color: #0D0D0D;
+  font-weight: bold;
+  border: none;
+}
+
+.btn-change-path:hover {
+  background: #0ABF7D;
+  cursor: pointer;
+  color: #ddd;
 }/*# sourceMappingURL=Metronome.css.map */

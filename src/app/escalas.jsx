@@ -1,4 +1,6 @@
 import React, {useState} from 'react'
+import '../styles/Escalas.css'
+
 
 const Escalas = () =>{
     //styles
@@ -24,6 +26,8 @@ const Escalas = () =>{
         const lower = str.toLowerCase()
         return str.charAt(0).toUpperCase() + lower.slice(1)
     }
+    const buttonText = "<"
+
 
 
     const handleClick = (event) => { 
@@ -123,12 +127,15 @@ const Escalas = () =>{
 
     return(
         <div>
-            <h1>Escala mayor y acordes</h1>
-            <input type="text" onChange={event => setNota(capitalized(event.target.value))}/>
-            <button data-id="Escalas#" type="button" onClick={handleClick}>Calcular #</button>
-            <button data-id="Escalasb" type="button" onClick={handleClick}>Calcular b</button>
-            <div><span>{Escala}</span></div>
-            <div><span style={columnDisp}>{acordes}</span></div>
+            <h1 className="TittleText">Escala mayor y acordes</h1>
+            <div className="TittleText">
+                <input type="text" onChange={event => setNota(capitalized(event.target.value))}/>
+                <button data-id="Escalas#" type="button" onClick={handleClick}>Calcular #</button>
+                <button data-id="Escalasb" type="button" onClick={handleClick}>Calcular b</button>
+                <div><span>{Escala}</span></div>
+                <div><span style={columnDisp}>{acordes}</span></div>
+            </div>
+            <button className="btn-change-path">{buttonText}</button>
         </div>
     )
 }

@@ -233,3 +233,21 @@ input[type=range]::-moz-range-track{
   .measures{
       position: relative;
   }
+
+  .btn-change-path{
+      position: absolute;
+      right: 0;
+      width: 50px;
+      height: 70px;
+      background: $color3;
+      font-size: 30px;
+      color: $color4;
+      font-weight: bold;
+      border: none;
+  }
+
+  .btn-change-path:hover{
+      background: $color2Ligther;
+      cursor: pointer;
+      color: $color3;
+  }

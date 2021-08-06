@@ -1,0 +1,30 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,700;1,400&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.TittleText {
+  margin: 22px 15px;
+}
+
+.btn-change-path {
+  position: absolute;
+  width: 50px;
+  height: 70px;
+  background: #ddd;
+  font-size: 30px;
+  color: #0D0D0D;
+  font-weight: bold;
+  border: none;
+  position: absolute;
+  top: 50%;
+  left: 25px;
+  transform: translate(-50%, -50%);
+}
+
+.btn-change-path:hover {
+  background: #ff656c;
+  cursor: pointer;
+  color: #ddd;
+}/*# sourceMappingURL=Escalas.css.map */

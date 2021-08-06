@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,700;1,400&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+}
+
+$colo1: #525252;
+$color2: #fa545c;
+$color2Ligther: #ff656c;
+$color3: #ddd;
+$color4: #0D0D0D;
+
+.TittleText{
+    margin: 22px 15px;
+}
+
+.btn-change-path{
+    position: absolute;
+    width: 50px;
+    height: 70px;
+    background: $color3;
+    font-size: 30px;
+    color: $color4;
+    font-weight: bold;
+    border: none;
+    position: absolute;
+    top: 50%;
+    left: 25px;
+    transform: translate(-50%, -50%);
+}
+
+.btn-change-path:hover{
+    background: $color2Ligther;
+    cursor: pointer;
+    color: $color3;
+}
