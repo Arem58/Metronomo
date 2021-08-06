@@ -11,17 +11,17 @@ $color3: #ddd;
 $color4: #0D0D0D;
 
 body{
-    font-family: 'Raleway', sans-serif;
-    color: $colo1;
     user-select: none;
-    background-color: $color4;
 }
 
 .Container{
+    font-family: 'Raleway', sans-serif;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    color: $colo1;
+    background-color: $color4;
 }
 
 .Metronome{
@@ -196,24 +196,24 @@ input[type=range]::-moz-range-track{
     bottom: 1px;
   }
   
-  .toggle__input {
+.toggle__input {
     display: none;
-  }
-  
-  .toggle__fill {
+}
+
+.toggle__fill {
     position: relative;
     width: var(--width);
     height: var(--height);
     border-radius: var(--border-radius);
     background: #dddddd;
     transition: background 0.2s;
-  }
-  
-  .toggle__input:checked ~ .toggle__fill {
+}
+
+.toggle__input:checked ~ .toggle__fill {
     background: $color2Ligther;
-  }
-  
-  .toggle__fill::after {
+}
+
+.toggle__fill::after {
     content: "";
     position: absolute;
     top: 0;
@@ -224,30 +224,51 @@ input[type=range]::-moz-range-track{
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
     border-radius: var(--border-radius);
     transition: transform 0.2s;
-  }
-  
-  .toggle__input:checked ~ .toggle__fill::after {
+}
+
+.toggle__input:checked ~ .toggle__fill::after {
     transform: translateX(var(--height));
-  }
+}
 
-  .measures{
-      position: relative;
-  }
+.measures{
+    position: relative;
+}
 
-  .btn-change-path{
-      position: absolute;
-      right: 0;
-      width: 50px;
-      height: 70px;
-      background: $color3;
-      font-size: 30px;
-      color: $color4;
-      font-weight: bold;
-      border: none;
-  }
+.btn-change-path-mt{
+    position: absolute;
+    right: 0;
+    width: 50px;
+    height: 70px;
+    background: $color3;
+    font-size: 30px;
+    color: $color4;
+    font-weight: bold;
+    border: none;
+    text-decoration: none;
+}
 
-  .btn-change-path:hover{
-      background: $color2Ligther;
-      cursor: pointer;
-      color: $color3;
-  }
+.btn-change-path-mt:hover{
+    background: $color2Ligther;
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:active {
+    color: $color3;
+}
+
+.decorationA{
+    width: 50px;
+    height: 70px;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.decorationA:hover{
+    color: $color3;
+}

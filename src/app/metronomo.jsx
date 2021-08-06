@@ -1,9 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react'
 import '../styles/Metronome.css'
 import {play1, play2, play3} from '../scripts/metronome'
+import { Link } from 'react-router-dom'
 //import Timer from '../scripts/timer'
 
-const App = () => {
+const Metronomo = () => {
   const [BPM, setBPM] = useState(140)
   const bpmRef = useRef(BPM)
   bpmRef.current = BPM
@@ -162,9 +163,9 @@ const App = () => {
         </div>
         <div className="beats-per-measure-text">Metrica</div>
       </div>
-      <button className="btn-change-path">{buttonText}</button>
+      <button className="btn-change-path-mt"><Link to="/escalas" className="decorationA"> <span className="centerText">{buttonText}</span></Link></button>
     </div>
   )
 }
 
-export default App
+export default Metronomo

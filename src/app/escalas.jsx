@@ -1,5 +1,6 @@
 import React, {useState} from 'react'
 import '../styles/Escalas.css'
+import { Link } from 'react-router-dom'
 
 
 const Escalas = () =>{
@@ -135,7 +136,7 @@ const Escalas = () =>{
                 <div><span>{Escala}</span></div>
                 <div><span style={columnDisp}>{acordes}</span></div>
             </div>
-            <button className="btn-change-path">{buttonText}</button>
+            <button className="btn-change-path"><Link to="/" className="decorationA"> <span>{buttonText}</span></Link></button>
         </div>
     )
 }

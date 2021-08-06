@@ -5,20 +5,20 @@
 }
 
 body {
-  font-family: "Raleway", sans-serif;
-  color: #ddd;
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
           user-select: none;
-  background-color: #0D0D0D;
 }
 
 .Container {
+  font-family: "Raleway", sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  color: #ddd;
+  background-color: #0D0D0D;
 }
 
 .Metronome {
@@ -230,7 +230,7 @@ input[type=range]::-moz-range-track {
   position: relative;
 }
 
-.btn-change-path {
+.btn-change-path-mt {
   position: absolute;
   right: 0;
   width: 50px;
@@ -240,10 +240,31 @@ input[type=range]::-moz-range-track {
   color: #0D0D0D;
   font-weight: bold;
   border: none;
+  text-decoration: none;
 }
 
-.btn-change-path:hover {
+.btn-change-path-mt:hover {
   background: #0ABF7D;
   cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:active {
+  color: #ddd;
+}
+
+.decorationA {
+  width: 50px;
+  height: 70px;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.decorationA:hover {
   color: #ddd;
 }/*# sourceMappingURL=Metronome.css.map */
