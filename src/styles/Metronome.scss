@@ -8,7 +8,7 @@ $colo1: #ddd;
 $color2: #08A66C;
 $color2Ligther: #0ABF7D;
 $color3: #ddd;
-$color4: #012603;
+$color4: #0D0D0D;
 
 body{
     font-family: 'Raleway', sans-serif;
@@ -185,7 +185,7 @@ input[type=range]::-moz-range-track{
 }
 
 .toggle {
-    --width: 35px;
+    --width: 30px;
     --height: calc(var(--width) / 2);
     --border-radius: calc(var(--height) / 2);
   
