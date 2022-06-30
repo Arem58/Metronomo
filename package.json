@@ -1,9 +1,11 @@
 {
+  "homepage": "https://Arem58.github.io/Metronomo",
   "name": "metronomo",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
+    "deploy": "gh-pages -d build",
     "start": "NODE_ENV=development webpack serve",
     "build": "NODE_ENV=production webpack",
     "serve": "webpack serve"
@@ -25,6 +27,7 @@
     "copy-webpack-plugin": "^11.0.0",
     "css-loader": "^6.7.1",
     "file-loader": "^6.2.0",
+    "gh-pages": "^4.0.0",
     "html-webpack-plugin": "^5.5.0",
     "ignore-styles": "^5.0.1",
     "mini-css-extract-plugin": "^2.6.1",

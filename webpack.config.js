@@ -16,7 +16,7 @@ module.exports = {
 
   // output files and chunks
   output: {
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, "build"),
     filename: "build/[name].js",
   },
 
@@ -63,12 +63,12 @@ module.exports = {
       minify: false,
     }),
 
-    // copy static files from `src` to `dist`
+    // copy static files from `src` to `build`
     new CopyWebpackPlugin({
       patterns: [
         {
           from: path.resolve(__dirname, "src/assets"),
-          to: path.resolve(__dirname, "dist/assets"),
+          to: path.resolve(__dirname, "build/assets"),
           noErrorOnMissing: true,
         },
       ],
